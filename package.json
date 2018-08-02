@@ -1,0 +1,22 @@
+{
+  "name": "ikovic.github.io",
+  "version": "1.0.0",
+  "description": "Personal website",
+  "main": "index.js",
+  "scripts": {
+    "start": "reload -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikovic/ikovic.github.io.git"
+  },
+  "author": "Ivan Kovic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ikovic/ikovic.github.io/issues"
+  },
+  "homepage": "https://github.com/ikovic/ikovic.github.io#readme",
+  "devDependencies": {
+    "reload": "^2.3.0"
+  }
+}
