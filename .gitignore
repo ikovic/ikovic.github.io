@@ -71,3 +71,6 @@ typings/
 
 # Serverless directories
 .serverless
+
+# Mac OS stuff
+.DS_Store
