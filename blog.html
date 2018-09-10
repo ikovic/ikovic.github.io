@@ -91,65 +91,92 @@
                                     </div>
                                 </div>
                                 <div class="content article-body">
-                                    <p>A few days ago I've stumbled across a very interesting article by Demir Selmanovic published
+                                    <p>A few days ago I've stumbled across a very interesting article by Demir
+                                        Selmanovic published
                                         on
-                                        <a href="https://www.toptal.com/javascript/asynchronous-javascript-async-await-tutorial">Toptal blog</a>. The author goes over a brief history of asynchronous JavaScript,
-                                        and compares the three existing approaches: callbacks, promises and async/await.
-                                        That inspired me to think about my experience with async JavaScript because in my
-                                        work I've had my share of all three approaches. Here are a few thoughts of my own
+                                        <a href="https://www.toptal.com/javascript/asynchronous-javascript-async-await-tutorial">Toptal
+                                            blog</a>. The author goes over a brief history of asynchronous JavaScript,
+                                        and compares the three existing approaches: callbacks, promises and
+                                        async/await.
+                                        That inspired me to think about my experience with async JavaScript because in
+                                        my
+                                        work I've had my share of all three approaches. Here are a few thoughts of my
+                                        own
                                         on the same subject.
                                     </p>
                                     <h4 class="has-text-centered is-4">Generators - the missing link?</h4>
                                     <p>
-                                        The first thing that came to mind was that the ES6 generators were omitted from the article. I understand the reasoning -
-                                        it seems they never got enough popularity on their own. Based on the various reactions
-                                        on social networks, I'd say that the generators by themselves require a certain way
-                                        of thinking which is probably not natural for a web programmer dealing with business
-                                        applications. Also, they do require some setup to solve the usual async problems.
+                                        The first thing that came to mind was that the ES6 generators were omitted from
+                                        the article. I understand the reasoning -
+                                        it seems they never got enough popularity on their own. Based on the various
+                                        reactions
+                                        on social networks, I'd say that the generators by themselves require a certain
+                                        way
+                                        of thinking which is probably not natural for a web programmer dealing with
+                                        business
+                                        applications. Also, they do require some setup to solve the usual async
+                                        problems.
                                         I'd still mention them, mainly because of these two reasons:
                                         <ul>
                                             <li>async/await is based on
-                                                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function#Description">combining promises and generators</a>
+                                                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function#Description">combining
+                                                    promises and generators</a>
                                             </li>
                                             <li>generators are an integral part of
-                                                <a href="https://github.com/redux-saga/redux-saga">Redux Saga</a>, a relevant package in Redux world
+                                                <a href="https://github.com/redux-saga/redux-saga">Redux Saga</a>, a
+                                                relevant package in Redux world
                                             </li>
                                         </ul>
-                                        In my opinion, async/await solves the async problem good enough without any setup, so I don't see myself using generators
-                                        directly if I have async/await available. Maybe they just got available in the wrong
-                                        time - async/await came too fast and solved the same problem in a way that the majority
+                                        In my opinion, async/await solves the async problem good enough without any
+                                        setup, so I don't see myself using generators
+                                        directly if I have async/await available. Maybe they just got available in the
+                                        wrong
+                                        time - async/await came too fast and solved the same problem in a way that the
+                                        majority
                                         of developers preferred.
                                     </p>
                                     <h4 class="has-text-centered is-4">Cancellation as the common pain point</h4>
                                     <p>
-                                        There is a problem shared by all three approaches - it is not possible to cancel an async function once it was called. At
-                                        least not in a standard way. How does that hurt us? Let's say you are implementing
-                                        an autocomplete control, and you dispatch multiple requests as the user types in
-                                        new characters. What if the response for the previous request comes after the response
-                                        for the last request? If you did nothing to prevent that, you will end up with wrong
+                                        There is a problem shared by all three approaches - it is not possible to
+                                        cancel an async function once it was called. At
+                                        least not in a standard way. How does that hurt us? Let's say you are
+                                        implementing
+                                        an autocomplete control, and you dispatch multiple requests as the user types
+                                        in
+                                        new characters. What if the response for the previous request comes after the
+                                        response
+                                        for the last request? If you did nothing to prevent that, you will end up with
+                                        wrong
                                         search results displayed. So how do we fix this? Three approaches come to mind:
                                         <ul>
                                             <li>
-                                                <strong>Use a library</strong>. There isn't a standard solution yet since there are
+                                                <strong>Use a library</strong>. There isn't a standard solution yet
+                                                since there are
                                                 trade offs in different ways to solve this problem.
-                                                <a href="https://github.com/petkaantonov/bluebird">Bluebird</a> is a powerful Promise polyfill which adds a lot of utility functions
+                                                <a href="https://github.com/petkaantonov/bluebird">Bluebird</a> is a
+                                                powerful Promise polyfill which adds a lot of utility functions
                                                 to Promise API, while
-                                                <a href="https://github.com/getify/CAF">CAF</a> is a simpler solution, focused only on cancellation of async flows.
+                                                <a href="https://github.com/getify/CAF">CAF</a> is a simpler solution,
+                                                focused only on cancellation of async flows.
                                             </li>
                                             <li>
                                                 <strong>Roll your own solution</strong>. Even popular frameworks like
-                                                <a href="https://github.com/zeit/next.js/blob/708193d2273afc7377df35c61f4eda022b040c05/lib/router/router.js#L298">next.js</a> handle this problem in their own way.
+                                                <a href="https://github.com/zeit/next.js/blob/708193d2273afc7377df35c61f4eda022b040c05/lib/router/router.js#L298">next.js</a>
+                                                handle this problem in their own way.
                                             </li>
                                             <li>
                                                 Take a completely different approach and use
                                                 <strong>streams</strong>. Angular uses observables by
-                                                <a href="https://angular.io/guide/observables-in-angular">default</a>, and they offer a built in way to cancel async operations. Just
-                                                expect to read a lot and spend some time wrapping your mind around this.
+                                                <a href="https://angular.io/guide/observables-in-angular">default</a>,
+                                                and they offer a built in way to cancel async operations. Just
+                                                expect to read a lot and spend some time wrapping your mind around
+                                                this.
                                             </li>
                                         </ul>
                                     </p>
                                     <p>
-                                        Some of the presented approaches are just workarounds, so it's up to you to find an ideal solution for your specific problem.
+                                        Some of the presented approaches are just workarounds, so it's up to you to
+                                        find an ideal solution for your specific problem.
                                         I hope this article can at least point you in the right direction :)
                                     </p>
                                 </div>
@@ -168,13 +195,19 @@
                                     </div>
                                 </div>
                                 <div class="content article-body">
-                                    <p>So many times I want to try out a new idea, some new approach to solving a kind of problem
-                                        I read on some blog. Usually I open the console in browser, but then I have to deal
-                                        with bad autocomplete and uncomfortable editing. Next step is to open my text editor
-                                        and create an empty project. Moment after I'm missing the support of ESLint and Prettier.
-                                        After having configured stuff like that for more than a hundred times, I guess I
+                                    <p>So many times I want to try out a new idea, some new approach to solving a kind
+                                        of problem
+                                        I read on some blog. Usually I open the console in browser, but then I have to
+                                        deal
+                                        with bad autocomplete and uncomfortable editing. Next step is to open my text
+                                        editor
+                                        and create an empty project. Moment after I'm missing the support of ESLint and
+                                        Prettier.
+                                        After having configured stuff like that for more than a hundred times, I guess
+                                        I
                                         have only myself to blame for not creating this
-                                        <a href="https://github.com/ikovic/vanilla-js-boilerplate">boilerplate</a> sooner. It's just the basic stuff: ESLint and Prettier integrated with
+                                        <a href="https://github.com/ikovic/vanilla-js-boilerplate">boilerplate</a>
+                                        sooner. It's just the basic stuff: ESLint and Prettier integrated with
                                         a precommit hook and a single script to run the code from root file.
                                     </p>
                                 </div>
@@ -184,8 +217,40 @@
                         <!-- START ARTICLE -->
                         <div class="card article no-bottom-margin">
                             <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content has-text-centered">
+                                        <p class="title article-title">All Things React</p>
+                                        <div class="tags has-addons level-item">
+                                            <span class="tag is-rounded">September 10, 2018</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="content article-body">
-                                    <p>More posts coming soon!</p>
+                                    <p>
+                                        Idea for this blog post is to categorize React related stuff I've recently been
+                                        learning. I spend a lot of time going through articles, books, videos, courses
+                                        and sources trying to learn something new, and I feel a need to write down my
+                                        comments on some of the things I've learned. This is going to be in WIP status
+                                        for a while, but I hope it's going to turn out OK in the end.
+                                    </p>
+                                    <h4 class="has-text-centered is-4">Redux and async actions</h4>
+                                    <p>
+                                        Let's start with a messy one. Async actions are not really supported out of the
+                                        box with redux. You either have to roll with your own solution, or use a
+                                        library like <strong>redux-thunk</strong>. Thunks are a part of official
+                                        documentation, so they are probably the most approachable solution. In my
+                                        opinion, the first problem that thunks don't solve is the cancellation of async
+                                        requests. I've found two alternatives that help with that: <strong>redux-saga</strong>
+                                        and <strong>redux-observable</strong>. Both come with trade offs: sagas are
+                                        based on generators which I personally don't prefer, and redux-observable uses
+                                        RxJs operators, which take some bundle size tax.
+                                    </p>
+                                    <p>
+                                        Regardless of library used, there is some thinking involved in designing the
+                                        redux
+                                        modules based around async actions. <a href="https://medium.com/stashaway-engineering/react-redux-tips-better-way-to-handle-loading-flags-in-your-reducers-afda42a804c6">This</a>
+                                        article shows a nice way to get rid of the involved boilerplate.
+                                    </p>
                                 </div>
                             </div>
                         </div>
