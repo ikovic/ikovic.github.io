@@ -215,11 +215,11 @@
                         </div>
                         <!-- END ARTICLE -->
                         <!-- START ARTICLE -->
-                        <div class="card article no-bottom-margin">
+                        <div class="card article">
                             <div class="card-content">
                                 <div class="media">
                                     <div class="media-content has-text-centered">
-                                        <p class="title article-title">All Things React</p>
+                                        <p class="title article-title">Handling Async Actions in Redux</p>
                                         <div class="tags has-addons level-item">
                                             <span class="tag is-rounded">September 10, 2018</span>
                                         </div>
@@ -227,16 +227,17 @@
                                 </div>
                                 <div class="content article-body">
                                     <p>
-                                        Idea for this blog post is to categorize React related stuff I've recently been
-                                        learning. I spend a lot of time going through articles, books, videos, courses
-                                        and sources trying to learn something new, and I feel a need to write down my
-                                        comments on some of the things I've learned. This is going to be in WIP status
-                                        for a while, but I hope it's going to turn out OK in the end.
+                                        This post is the first one in what should be a series of articles about the
+                                        topics I'm currently interested at. Lately I've been trying to improve my
+                                        architecture design skills, so the topics I'm learning about are how to
+                                        structure and manage state using Redux, how to model and formalize internal
+                                        state in React components, and how to properly test all of the above. I think
+                                        that these are some of the key issues which can make or break a project. So
+                                        let's start with a messy one: how to deal with async actions in Redux.
                                     </p>
-                                    <h4 class="has-text-centered is-4">Redux and async actions</h4>
                                     <p>
-                                        Let's start with a messy one. Async actions are not really supported out of the
-                                        box with redux. You either have to roll with your own solution, or use a
+                                        Async actions are not really supported out of the box with redux. You either
+                                        have to roll with your own solution, or use a
                                         library like <strong>redux-thunk</strong>. Thunks are a part of official
                                         documentation, so they are probably the most approachable solution. In my
                                         opinion, the first problem that thunks don't solve is the cancellation of async
@@ -250,6 +251,84 @@
                                         redux
                                         modules based around async actions. <a href="https://medium.com/stashaway-engineering/react-redux-tips-better-way-to-handle-loading-flags-in-your-reducers-afda42a804c6">This</a>
                                         article shows a nice way to get rid of the involved boilerplate.
+                                    </p>
+                                    <p>
+                                        <strong>Update: </strong> it seems I was wrong when I said that cancellation
+                                        can't be done with thunks.
+                                        There is a way, and it involves using redux middleware. The article above made
+                                        me think about that. Middleware is a great architectural option when you want
+                                        to have control over all of the dispatched actions. I see a few situations when
+                                        you'd like to have that control to cancel some requests: if a certain kind of
+                                        request is still waiting for a response, but a new request of that kind is
+                                        issued, we can cancel the existing one by just removing it from the list of
+                                        pending requests. Browser will still execute the request, but no callback will
+                                        be fired. Most importantly, no unexpected change in state will happen. The
+                                        other situation that comes to mind is cancelling all requests when navigating.
+                                        That is also simple: clear all the pending requests or provide a black list
+                                        argument of request types to cancel.
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END ARTICLE -->
+                        <!-- START ARTICLE -->
+                        <div class="card article">
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content has-text-centered">
+                                        <p class="title article-title">Formalizing component state</p>
+                                        <div class="tags has-addons level-item">
+                                            <span class="tag is-rounded">September 20, 2018</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content article-body">
+                                    <p>Using statecharts: TODO add links to project and references (davidkpiano talk,
+                                        xstate, reference website, my github project). Experience with statecharts so
+                                        far:
+                                        hiearchical approach allows for modular approach. Complex states can have child
+                                        state which simplifies things, creates black boxes where you need them. Main
+                                        concept to swallow to be able to use this effectively is that when a transition
+                                        is made on a parent state, child states will be first to receive the
+                                        transition. In case they can handle that kind of transition, they will do it.
+                                        Instead, the transition will bubble up to the first parent which can do that
+                                        transition. Kind of similar to JS prototype inheritance. Nice things which
+                                        xstate provides: guards (conditional transitions), external state...
+                                    </p>
+                                    <p>
+                                        Compared to reducers, state machines are pure functions which take the current
+                                        state, and the wanted transition. New state is returned. That part is
+                                        completely the same as with the reducers. But, state machines also define which
+                                        transition is possible based on state and action, while in reducers you are
+                                        much more free to do what you want. So state machines are more strict, which
+                                        makes them tougher to develop and tougher to break unexpectedly.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END ARTICLE -->
+                        <!-- START ARTICLE -->
+                        <div class="card article no-bottom-margin">
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content has-text-centered">
+                                        <p class="title article-title">Moving Blog to Next.js</p>
+                                        <div class="tags has-addons level-item">
+                                            <span class="tag is-rounded">September 20, 2018</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content article-body">
+                                    <p>
+                                        At first, it was so easy to edit this blog since it was just a static page with
+                                        a few articles. Since I decided to write more posts, it became unwieldy. In the
+                                        abundance of static site generators (<strong>SSG</strong>), I've picked <strong>Next.js</strong>.
+                                        For
+                                        me it seems to strike a good balance between simplicity and features. The
+                                        situation I want to avoid is having to relearn how to use an SSG between two
+                                        posts. So it's best to keep it simple. <a href="https://wookiehangover.com/writing/static-sites-with-next-js.html">This</a>
+                                        seems like a good resource.
                                     </p>
                                 </div>
                             </div>
