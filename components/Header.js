@@ -21,12 +21,12 @@ export default () => (
             <div className="tabs is-right">
               <ul>
                 <li className="is-active">
-                  <Link href="/">
+                  <Link prefetch href="/">
                     <a>Home</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog">
+                  <Link prefetch href="/blog">
                     <a>Blog</a>
                   </Link>
                 </li>
