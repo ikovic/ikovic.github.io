@@ -21,17 +21,17 @@ export default () => (
             <div className="social">
               <ul>
                 <li>
-                  <a href="https://github.com/ikovic">
+                  <a target="_blank" rel="noopener noreferrer" href="https://github.com/ikovic">
                     <i className="fa fa-github-square fa-2x" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.linkedin.com/in/ivan-ković-684b44a0">
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ivan-ković-684b44a0">
                     <i className="fa fa-linkedin-square fa-2x" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/kobeljic">
+                  <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/kobeljic">
                     <i className="fa fa-twitter-square fa-2x" />
                   </a>
                 </li>

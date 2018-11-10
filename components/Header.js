@@ -26,7 +26,9 @@ export default () => (
                   </Link>
                 </li>
                 <li>
-                  <a href="./blog.html">Blog</a>
+                  <Link href="/blog">
+                    <a>Blog</a>
+                  </Link>
                 </li>
               </ul>
             </div>
