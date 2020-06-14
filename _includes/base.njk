@@ -9,14 +9,14 @@ title: Ivan Kovic - Full-stack developer
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Ivan Kovic - Full-stack developer</title>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
     <!-- Bulma Version 0.7.1-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123270827-1"></script>
-    <link rel="prefetch" href="/blog.html" />
+    <link rel="prefetch" href="{% if '/blog' in page.url %}/{% else %}/blog/{% endif %}" />
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
