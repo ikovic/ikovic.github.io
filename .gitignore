@@ -74,5 +74,3 @@ typings/
 
 # Mac OS stuff
 .DS_Store
-
-static/*
