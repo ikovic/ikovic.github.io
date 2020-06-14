@@ -4,7 +4,7 @@
   "description": "Personal website",
   "main": "index.js",
   "scripts": {
-    "start": "reload -b"
+    "start": "rimraf static/* & eleventy --serve"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,15 @@
   },
   "homepage": "https://github.com/ikovic/ikovic.github.io#readme",
   "devDependencies": {
-    "reload": "^2.3.0"
+    "@11ty/eleventy": "0.11.0",
+    "eslint": "6.8.0",
+    "eslint-plugin-prettier": "3.1.2",
+    "prettier": "1.19.1",
+    "rimraf": "^3.0.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "printWidth": 120
   }
 }
